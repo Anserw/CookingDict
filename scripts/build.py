@@ -31,6 +31,8 @@ def 分析一条记录(一条记录的路径):
     图片地址列表 = glob(os.path.join(一条记录的路径, 'image.*'))
     if len(图片地址列表) != 1:
         logger.error('每条记录下面应该有且只有一张文件名为image.*的照片')
+    if len(图片地址列表) == 0:
+        图片地址列表 = glob(os.path.join(一条记录的路径, '*.JPG'))[:1]
     图片地址 = '/' + 图片地址列表[0]
     详细信息 = yaml.load(open(os.path.join(一条记录的路径, 'desc.yaml')))
     所有分类位置 = []
